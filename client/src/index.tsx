@@ -7,17 +7,20 @@ import { StateProvider } from './Redux/StateProvider';
 import { reducer } from './Redux/reducer';
 import { initialState } from './Redux/initialState';
 import { AuthProvider } from './Context/authContext';
+import { BrowserRouter } from 'react-router-dom';
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
 );
 root.render(
   <React.StrictMode>
+    <BrowserRouter>
     <AuthProvider>
     <StateProvider reducer={reducer} initialState={initialState}>
     <App />
     </StateProvider>
     </AuthProvider>
+    </BrowserRouter>
   </React.StrictMode>
 );
 
