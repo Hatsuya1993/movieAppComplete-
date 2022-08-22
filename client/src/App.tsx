@@ -5,7 +5,7 @@ import { Route, Routes } from 'react-router-dom';
 import Main from './Feature/Main';
 import Login from './Feature/Login';
 import Search from './Feature/Search';
-import {RequireAuthComponent} from './Components/RequireAuth'
+import RequireAuthComponent from './Components/RequireAuth'
 import Latest from './Feature/Latest';
 import Watch from './Feature/Watch';
 
