@@ -2,7 +2,7 @@ import React from 'react';
 import NavBar from './Feature/NavBar';
 import './App.css';
 import { Route, Routes } from 'react-router-dom';
-import Banner from './Feature/Banner';
+import Main from './Feature/Main';
 
 const App : React.FC =  () =>  {
   return (
@@ -10,7 +10,7 @@ const App : React.FC =  () =>  {
       <NavBar />
       <main className='mt-12'>
         <Routes>
-          <Route path='/' element={<Banner />}></Route>
+          <Route path='/' element={<Main />}></Route>
         </Routes>
       </main>
     </div>
