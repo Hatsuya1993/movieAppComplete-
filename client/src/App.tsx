@@ -8,12 +8,14 @@ import Search from './Feature/Search';
 import RequireAuthComponent from './Components/RequireAuth'
 import Latest from './Feature/Latest';
 import Watch from './Feature/Watch';
+import { useAuth } from './Context/authContext';
 
 const App : React.FC =  () =>  {
+  const { currentUser } = useAuth()
   return (
     <div className='w-screen h-auto flex flex-col bg-white'>
       <NavBar />
-      <main className='mt-12'>
+      <main className={`${currentUser?.email ? 'mt-44' : 'mt-12'}`}>
         <Routes>
           <Route path='/login' element={<Login />}></Route>
           <Route path='/' element={<Main />}></Route>
