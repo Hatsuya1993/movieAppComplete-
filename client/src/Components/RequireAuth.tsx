@@ -6,9 +6,11 @@ type AuthProps = {
     children: React.ReactElement
 }
 
-export const RequireAuthComponent : React.FC<AuthProps> = ({children}) => {
+const RequireAuthComponent : React.FC<AuthProps> = ({children}) => {
     const {currentUser} = useAuth()
     return (
         currentUser ? children : <ReactRouterDOM.Navigate to={'/login'}/>
     )
 }
+
+export default RequireAuthComponent
