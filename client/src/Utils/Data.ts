@@ -13,19 +13,19 @@ export interface DetailsOptionsType {
 export const detailsOptions : Array<DetailsOptionsType> = [
     {
         id: 1,
-        title: "Search",
+        title: "search",
         desc: "Search for the latest and best movies",
         icon: FiSearch
     },
     {
         id: 2,
-        title: "Latest",
+        title: "latest",
         desc: "Always be updated with the latest movies",
         icon: FaStream
     },
     {
         id: 3,
-        title: "Watch",
+        title: "watch",
         desc: "Watch anytime and anywhere",
         icon: BiMoviePlay
     }
