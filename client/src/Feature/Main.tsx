@@ -8,7 +8,7 @@ const Main : React.FC = () => {
             <div className='w-full h-full'>
             <Banner />
             </div>
-            <div className='w-full h-full'>
+            <div className='w-full h-full '>
             <Options />
             </div>
         </div>

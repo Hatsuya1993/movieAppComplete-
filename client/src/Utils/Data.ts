@@ -19,14 +19,14 @@ export const detailsOptions : Array<DetailsOptionsType> = [
     },
     {
         id: 2,
-        title: "latest",
-        desc: "Always be updated with the latest movies",
+        title: "Short Videos",
+        desc: "Watch snippets of your favourite movie",
         icon: FaStream
     },
     {
         id: 3,
-        title: "watch",
-        desc: "Watch anytime and anywhere",
+        title: "Information",
+        desc: "Learn more about your favourite movies",
         icon: BiMoviePlay
     }
 ]

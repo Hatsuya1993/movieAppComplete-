@@ -15,7 +15,7 @@ const App : React.FC =  () =>  {
   return (
     <div className='w-screen h-auto flex flex-col bg-white'>
       <NavBar />
-      <main className={`${currentUser?.email ? 'mt-44' : 'mt-12'}`}>
+      <main className={`${currentUser?.email ? 'mt-44' : 'mt-12'} `}>
         <Routes>
           <Route path='/login' element={<Login />}></Route>
           <Route path='/' element={<Main />}></Route>
