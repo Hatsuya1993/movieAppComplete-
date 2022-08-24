@@ -14,3 +14,12 @@ export const getShows = async (show: string) => {
         console.log(error)
     }
 }
+
+export const getMoviesInfo = async (name: string) => {
+    try {
+        const data : any = await axios.get(`${process.env.REACT_APP_CORS}https://api.themoviedb.org/3/search/movie?api_key=9e6e12d7297410647964bde712f4aa28&language=en-US&query=${name}&page=1&include_adult=false`)
+        return data.data
+    } catch (error) {
+        console.log(error)
+    }
+}
