@@ -8,6 +8,7 @@ import { actionType } from '../Redux/reducer'
 import { useStateValue } from '../Redux/StateProvider'
 import { getMoviesInfo } from '../Utils/fetchShows'
 import NoData from '../Img/no-data-icon.jpg'
+import { Link } from 'react-router-dom'
 
 const Information : React.FC = () => {
   const [search, setSearch] = React.useState('')
@@ -40,6 +41,7 @@ const Information : React.FC = () => {
     {loading ? (
         <div className='text-center'><CircularProgress isIndeterminate color='orange.300' /></div>
     ) : get_movies_info?.length > 0 ? get_movies_info.map((each : results) => (
+      <Link to={'/detail'} state={each}>
       <motion.div whileTap={{scale:0.9}} key={each.id} className='bg-slate-100 p-3 rounded-lg shadow-lg'>
         <div className='flex items-center'>
           <div className='flex flex-col gap-3'>
@@ -53,6 +55,7 @@ const Information : React.FC = () => {
         <div>
         </div>
       </motion.div>
+      </Link>
     )) : (
         <div className='w-full h-full flex justify-center items-center'>
             <img className='w-28' src={NoData} alt="" />

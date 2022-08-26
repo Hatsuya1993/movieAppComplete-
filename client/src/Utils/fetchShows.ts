@@ -23,3 +23,12 @@ export const getMoviesInfo = async (name: string) => {
         console.log(error)
     }
 }
+
+export const getMoviesVideo = async (id: string) => {
+    try {
+        const data : any = await axios.get(`${process.env.REACT_APP_CORS}https://api.themoviedb.org/3/movie/${id}/images?api_key=9e6e12d7297410647964bde712f4aa28`)
+        return data.data
+    } catch (error) {
+        console.log(error)
+    }
+}
