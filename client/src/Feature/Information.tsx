@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import {CircularProgress} from '@chakra-ui/react'
 import { motion } from 'framer-motion'
 import ButtonComponent from '../Components/ButtonComponent'
@@ -13,6 +13,12 @@ import { Link } from 'react-router-dom'
 const Information : React.FC = () => {
   const [search, setSearch] = React.useState('')
   const [{loading, get_movies_info}, dispatch] = useStateValue()
+  useEffect(() => {
+    dispatch({
+      type: actionType.SET_MOVIES_INFO,
+      get_movies_info: []
+  })
+  }, [])
   const handleSearch = async () => {
       dispatch({
           type: actionType.SET_LOADING,
@@ -41,8 +47,8 @@ const Information : React.FC = () => {
     {loading ? (
         <div className='text-center'><CircularProgress isIndeterminate color='orange.300' /></div>
     ) : get_movies_info?.length > 0 ? get_movies_info.map((each : results) => (
-      <Link to={'/detail'} state={each}>
-      <motion.div whileTap={{scale:0.9}} key={each.id} className='bg-slate-100 p-3 rounded-lg shadow-lg'>
+      <Link key={each.id} to={'/detail'} state={each}>
+      <motion.div whileTap={{scale:0.9}} className='bg-slate-100 p-3 rounded-lg shadow-lg'>
         <div className='flex items-center'>
           <div className='flex flex-col gap-3'>
             <p>Title: {each.original_title}</p>

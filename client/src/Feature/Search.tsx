@@ -1,6 +1,6 @@
 import { CircularProgress } from '@chakra-ui/react'
 import { motion } from 'framer-motion'
-import React from 'react'
+import React, { useEffect } from 'react'
 import ButtonComponent from '../Components/ButtonComponent'
 import InputComponent from '../Components/InputComponent'
 import NoData from '../Img/no-data-icon.jpg'
@@ -12,6 +12,12 @@ import { getShows } from '../Utils/fetchShows'
 const Search : React.FC = () => {
     const [search, setSearch] = React.useState('')
     const [{loading, available_on}, dispatch] = useStateValue()
+    useEffect(() => {
+        dispatch({
+            type: actionType.SET_AVAILABLE_ON,
+            available_on: {}
+        })
+    }, [])
     const handleSearch = async () => {
         dispatch({
             type: actionType.SET_LOADING,

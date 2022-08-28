@@ -6,6 +6,7 @@ import { available_on_type, backdrop } from '../Redux/initialState'
 import { actionType } from '../Redux/reducer'
 import { useStateValue } from '../Redux/StateProvider'
 import { getMoviesVideo, getShows } from '../Utils/fetchShows'
+import NoData from '../Img/no-data-icon.jpg'
 
 const Detail : React.FC = () => {
     const location = useLocation()
@@ -18,12 +19,20 @@ const Detail : React.FC = () => {
         fetchData()
     }, [])
     const getMovies = async () => {
-        const dataImages = await getMoviesVideo(data.id)
-        const dataAvailable = await getShows(data.original_title)
         dispatch({
             type: actionType.SET_LOADING,
             loading: true
         })
+        dispatch({
+            type: actionType.SET_MOVIES_IMAGES,
+            get_movies_images: []
+        })
+        dispatch({
+            type: actionType.SET_AVAILABLE_ON,
+            available_on: {}
+        })
+        const dataImages = await getMoviesVideo(data.id)
+        const dataAvailable = await getShows(data.original_title)
         dispatch({
             type: actionType.SET_MOVIES_IMAGES,
             get_movies_images: dataImages
@@ -55,15 +64,15 @@ const Detail : React.FC = () => {
             <div className='w-80 mx-auto p-3 flex items-center scroll-smooth overflow-x-scroll gap-3 scrollbar-thumb-gray-100 scrollbar-track-transparent scrollbar-thin'>
                 {loading ? <div className='w-full text-center'>
                     <CircularProgress size='50px' isIndeterminate color='orange.400' /></div>
-                : get_movies_images && get_movies_images.backdrops.length > 0 &&  get_movies_images.backdrops.map((each : backdrop) => (
+                : get_movies_images && get_movies_images.backdrops && get_movies_images.backdrops.length > 0 &&  get_movies_images.backdrops.map((each : backdrop) => (
                     <img key={each.file_path} src={`https://image.tmdb.org/t/p/original${each.file_path}`} alt="" />
                 ))}
             </div>
             <div className='w-80 mx-auto flex flex-col gap-3'>
-                <p className='text-center'>Available On</p>
                 {loading ? <div className='w-full text-center'>
                     <CircularProgress size='50px' isIndeterminate color='orange.400' /></div> : available_on && available_on.length > 0 ? (
                         <div className='flex flex-col gap-3'>
+                            <p className='text-center'>Available On</p>
                             {available_on.map((each : available_on_type) => (
                                 <a href={`${each.link}`} target="_blank" rel="noopener noreferrer" key={each.name}>
                             <motion.div whileTap={{scale:0.9}} className='bg-slate-100 p-2 rounded-lg flex items-center justify-between'>
@@ -79,7 +88,11 @@ const Detail : React.FC = () => {
                         ))}
                         </div>
 
-                    ) : null}
+                    ) : (
+                        <div className='w-full h-full flex justify-center items-center'>
+                        <img className='w-28' src={NoData} alt="" />
+                        </div>
+                    )}
             </div>
         </div>
     )
