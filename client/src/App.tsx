@@ -10,6 +10,7 @@ import { useAuth } from './Context/authContext';
 import ShortVideos from './Feature/ShortVideos';
 import Information from './Feature/Information';
 import Detail from './Feature/Detail';
+import ListShowVideos from './Feature/ListShowVideos';
 
 const App : React.FC =  () =>  {
   const { currentUser } = useAuth()
@@ -24,6 +25,7 @@ const App : React.FC =  () =>  {
           <Route path='/short%20videos' element={<RequireAuthComponent><ShortVideos /></RequireAuthComponent>}></Route>
           <Route path='/information' element={<RequireAuthComponent><Information /></RequireAuthComponent>}></Route>
           <Route path='/detail' element={<RequireAuthComponent><Detail /></RequireAuthComponent>}></Route>
+          <Route path='/short%20videos/:title' element={<RequireAuthComponent><ListShowVideos /></RequireAuthComponent>}></Route>
         </Routes>
       </main>
     </div>

@@ -28,11 +28,18 @@ export interface get_movies_images {
     posters: Array<posters>
 }
 
+export interface short_videos {
+    link: string,
+    source: string,
+    thumbnail: string
+}
+
 export interface InitialState {
     loading : boolean
     available_on : Array<available_on_type>
     get_movies_info : Array<results>
     get_movies_images : get_movies_images
+    get_short_videos : Array<short_videos>
 }
 
 export const initialState : InitialState = {
@@ -42,5 +49,6 @@ export const initialState : InitialState = {
     get_movies_images : {
         backdrops: [],
         posters: []
-    }
+    },
+    get_short_videos : []
 }

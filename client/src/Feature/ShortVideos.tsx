@@ -8,6 +8,7 @@ import { getMoviesInfo } from '../Utils/fetchShows'
 import NoData from '../Img/no-data-icon.jpg'
 import { results } from '../Redux/initialState'
 import { motion } from 'framer-motion'
+import { Link } from 'react-router-dom'
 
 const ShortVideos : React.FC = () => {
   const [search, setSearch] = React.useState('')
@@ -44,6 +45,7 @@ const ShortVideos : React.FC = () => {
           <div className='flex flex-col gap-8'>
           {loading ? <div className='text-center'><CircularProgress isIndeterminate color='orange.300' /></div> : (
               get_movies_info && get_movies_info.length > 0 ? get_movies_info.map((each : results ) => (
+                <Link key={each.id} to={`/short%20videos/${each.original_title}`} state={each}>
                 <motion.div key={each.id} whileTap={{scale:0.9}} className='bg-slate-100 p-3 w-full rounded-lg drop-shadow-lg flex flex-col gap-3'>
                   <div className='flex flex-col gap-2'>
                     <p>Title: {each.original_title}</p>
@@ -53,6 +55,7 @@ const ShortVideos : React.FC = () => {
                     <img className='rounded-lg' src={`https://image.tmdb.org/t/p/original/${each.backdrop_path}`} alt="" />
                   </div>
                 </motion.div>
+                </Link>
               )) : (
                 <div className='w-full h-full flex justify-center items-center'>
                 <img className='w-28' src={NoData} alt="" />
