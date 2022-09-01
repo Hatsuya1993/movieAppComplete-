@@ -20,11 +20,11 @@ const ShortVideos : React.FC = () => {
     })
 }, [])
   const handleSearch = async () => {
-    const data = await getMoviesInfo(search)
     dispatch({
       type: actionType.SET_LOADING,
       loading: true
   })   
+    const data = await getMoviesInfo(search)
   dispatch({
       type: actionType.SET_MOVIES_INFO,
       get_movies_info: data.results
@@ -36,15 +36,16 @@ const ShortVideos : React.FC = () => {
   }
   return (
     <div className='w-full p-5 h-full'>
-      <div className='w-80 mx-auto flex flex-col gap-10'>
-        <div className='bg-slate-100 w-full rounded-lg p-4 flex flex-col gap-5'>
+      <div className='w-80 md:w-[90%] h-full mx-auto'>
+        <div className='w-full h-full bg-slate-100 p-4 rounded-lg flex flex-col gap-4'>
             <InputComponent name='search' onChange={(e) => setSearch(e.target.value)} placeholder='Search movies or shows' required={true} type='text' value={search}/>
+            <div>
             <ButtonComponent onClick={handleSearch}>Search</ButtonComponent>
+            </div>
         </div>
-        <div className='w-full'>
-          <div className='flex flex-col gap-8'>
+          <div className={`w-full py-10 flex flex-col gap-5 ${get_movies_info?.length > 0 ? 'md:grid md:grid-cols-4' : ''} `}>
           {loading ? <div className='text-center'><CircularProgress isIndeterminate color='orange.300' /></div> : (
-              get_movies_info && get_movies_info.length > 0 ? get_movies_info.map((each : results ) => (
+              get_movies_info && get_movies_info.length > 0 ? get_movies_info?.map((each : results ) => (
                 <Link key={each.id} to={`/short%20videos/${each.original_title}`} state={each}>
                 <motion.div key={each.id} whileTap={{scale:0.9}} className='bg-slate-100 p-3 w-full rounded-lg drop-shadow-lg flex flex-col gap-3'>
                   <div className='flex flex-col gap-2'>
@@ -63,7 +64,6 @@ const ShortVideos : React.FC = () => {
               )
             )}
           </div>
-        </div>
       </div>
     </div>
   )

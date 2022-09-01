@@ -43,10 +43,10 @@ const Information : React.FC = () => {
         <ButtonComponent onClick={handleSearch}>Search</ButtonComponent>
         </div>
     </div>
-    <div className='py-10 flex flex-col gap-5 md:flex-row md:grid md:grid-cols-4'>
+    <div className={`w-full py-10 flex flex-col gap-5 ${get_movies_info?.length > 0 ? 'md:grid md:grid-cols-4' : ''} `}>
     {loading ? (
         <div className='text-center'><CircularProgress isIndeterminate color='orange.300' /></div>
-    ) : get_movies_info?.length > 0 ? get_movies_info.map((each : results) => (
+    ) : get_movies_info?.length > 0 ? get_movies_info?.map((each : results) => (
       <Link key={each.id} to={'/detail'} state={each}>
       <motion.div whileTap={{scale:0.9}} className='bg-slate-100 p-3 rounded-lg shadow-lg'>
         <div className='flex items-center'>

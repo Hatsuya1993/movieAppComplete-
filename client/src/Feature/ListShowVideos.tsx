@@ -52,14 +52,16 @@ const ListShowVideos : React.FC = () => {
                         <div className='text-center'><CircularProgress isIndeterminate color='orange.300' /></div>
                     ) : get_short_videos && get_short_videos.length > 0 ? (
                         <div className='flex flex-col gap-3'>
-                            {get_short_videos.map((each: short_videos) => (
-                                <motion.div whileTap={{scale: 0.9}} className='bg-slate-100 py-3 rounded-lg'>
+                            {get_short_videos?.map((each: short_videos) => (
+                                <motion.div key={each.link} whileTap={{scale: 0.9}} className='bg-slate-100 py-3 rounded-lg'>
+                                    <a href={`${each.link}`} target="_blank" rel="noopener noreferrer">
                                     <div className='flex flex-col gap-3 text-center'>
                                         <p>{each.source}</p>
                                         <div>
                                             <img className='mx-auto' src={`${each.thumbnail}`} alt="" />
                                         </div>
                                     </div>
+                                    </a>
                                 </motion.div>
                             ))}
                         </div>

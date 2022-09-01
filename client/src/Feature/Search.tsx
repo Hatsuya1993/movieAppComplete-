@@ -42,10 +42,10 @@ const Search : React.FC = () => {
                 <ButtonComponent onClick={handleSearch}>Search</ButtonComponent>
                 </div>
             </div>
-            <div className='py-10 flex flex-col gap-5 md:flex-row md:grid md:grid-cols-4'>
+            <div className={`w-full py-10 flex flex-col gap-5 ${available_on?.length > 0 ? 'md:grid md:grid-cols-4' : ''} `}>
             {loading ? (
                 <div className='text-center'><CircularProgress isIndeterminate color='orange.300' /></div>
-            ) : available_on?.length > 0 ? available_on.map((each : available_on_type) => (
+            ) :  available_on?.length > 0 ? available_on?.map((each : available_on_type) => (
                 <a href={`${each.link}`} target="_blank" rel="noopener noreferrer" key={each.name}>
                     <motion.div whileTap={{scale : 0.9}} className='w-full'>
                     <div className='bg-slate-100 w-[90%] mx-auto p-4 rounded-lg drop-shadow-lg flex items-center justify-between'>
@@ -61,9 +61,9 @@ const Search : React.FC = () => {
                 </motion.div>
                 </a>
             )) : (
-                <div className='w-full h-full flex justify-center items-center'>
+                <div className='w-full h-full flex items-center justify-center'>
                     <img className='w-28' src={NoData} alt="" />
-                </div>
+                </div>                    
             )}
             </div>
             </div>
