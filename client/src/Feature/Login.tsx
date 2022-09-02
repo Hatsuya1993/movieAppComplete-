@@ -1,12 +1,14 @@
 import React from 'react'
 import ButtonComponent from '../Components/ButtonComponent'
 import InputComponent from '../Components/InputComponent'
-import { useAuth } from '../Context/authContext'
 import * as ReactRouterDOM from 'react-router-dom'
+import { loginUser, registerUser } from '../Utils/userData'
+import { useStateValue } from '../Redux/StateProvider'
+import { actionType } from '../Redux/reducer'
 
 const Login : React.FC = () => {
+    const [{}, dispatch] = useStateValue()
     const navigate = ReactRouterDOM.useNavigate()
-    const {login, signup} = useAuth()
     const [userDetails, setUserDetails] = React.useState({
         email: '',
         password: ''
@@ -29,7 +31,11 @@ const Login : React.FC = () => {
         }
         else{
             try {
-                await login(userDetails.email, userDetails.password)
+                const email = await loginUser(userDetails.email, userDetails.password)
+                dispatch({
+                    type: actionType.SET_USER,
+                    user: email
+                })
                 navigate('/')
             } catch (error) {
                 console.log(error)
@@ -53,7 +59,11 @@ const Login : React.FC = () => {
         }
         else{
             try {
-                await signup(userDetails.email, userDetails.password)
+                const email = await registerUser(userDetails.email, userDetails.password)
+                dispatch({
+                    type: actionType.SET_USER,
+                    user: email
+                })
                 navigate('/')
             } catch (error) {
                 console.log(error)

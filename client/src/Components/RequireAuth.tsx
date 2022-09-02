@@ -1,15 +1,15 @@
 import React from 'react'
 import * as ReactRouterDOM from 'react-router-dom'
-import { useAuth } from '../Context/authContext'
+import { useStateValue } from '../Redux/StateProvider'
 
 type AuthProps = {
     children: React.ReactElement
 }
 
 const RequireAuthComponent : React.FC<AuthProps> = ({children}) => {
-    const {currentUser} = useAuth()
+    const [{user}, dispatch] = useStateValue()
     return (
-        currentUser ? children : <ReactRouterDOM.Navigate to={'/login'}/>
+        user ? children : <ReactRouterDOM.Navigate to={'/login'}/>
     )
 }
 

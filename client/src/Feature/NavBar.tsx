@@ -1,15 +1,21 @@
 import React from 'react'
 import Logo from '../Img/logo.png'
-import { useAuth } from '../Context/authContext'
 import ButtonComponent from '../Components/ButtonComponent'
 import { Link } from 'react-router-dom'
 import * as ReactRouterDOM from 'react-router-dom'
+import { useStateValue } from '../Redux/StateProvider'
+import { logoutUser } from '../Utils/userData'
+import { actionType } from '../Redux/reducer'
 
 const NavBar : React.FC = () => {
     const navigate = ReactRouterDOM.useNavigate()
-    const { currentUser, logout } = useAuth()
+    const [{user}, dispatch] = useStateValue()
     const handleLogout = async () => {
-        await logout()
+        await logoutUser()
+        dispatch({
+            type: actionType.SET_USER,
+            user: ''
+        })
         navigate('/login')
     }
 return (
@@ -20,8 +26,8 @@ return (
             </div>
             <div className='w-full'>
                 <ul className='flex flex-col items-center gap-3'>
-                    {currentUser ? <ButtonComponent onClick={() => {}}>My Subscription</ButtonComponent>: null}
-                    {currentUser ? <ButtonComponent onClick={handleLogout}>Logout</ButtonComponent> : null}
+                    {user ? <ButtonComponent onClick={() => {}}>My Shows</ButtonComponent>: null}
+                    {user ? <ButtonComponent onClick={handleLogout}>Logout</ButtonComponent> : null}
                 </ul>
             </div>
         </div>

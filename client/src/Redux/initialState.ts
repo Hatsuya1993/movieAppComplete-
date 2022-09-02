@@ -40,9 +40,11 @@ export interface InitialState {
     get_movies_info : Array<results>
     get_movies_images : get_movies_images
     get_short_videos : Array<short_videos>
+    user : String
 }
 
 export const initialState : InitialState = {
+    user : '',
     loading : false,
     available_on : [],
     get_movies_info : [],

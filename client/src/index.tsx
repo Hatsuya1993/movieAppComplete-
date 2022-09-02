@@ -6,7 +6,6 @@ import reportWebVitals from './reportWebVitals';
 import { StateProvider } from './Redux/StateProvider';
 import { reducer } from './Redux/reducer';
 import { initialState } from './Redux/initialState';
-import { AuthProvider } from './Context/authContext';
 import { BrowserRouter } from 'react-router-dom';
 import { ChakraProvider } from '@chakra-ui/react';
 
@@ -16,13 +15,11 @@ const root = ReactDOM.createRoot(
 root.render(
   <React.StrictMode>
     <BrowserRouter>
-    <AuthProvider>
     <StateProvider reducer={reducer} initialState={initialState}>
     <ChakraProvider>
     <App />
     </ChakraProvider>
     </StateProvider>
-    </AuthProvider>
     </BrowserRouter>
   </React.StrictMode>
 );

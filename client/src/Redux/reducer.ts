@@ -7,6 +7,7 @@ interface ActionType {
     get_movies_info : Array<results>
     get_movies_images : get_movies_images
     get_short_videos : Array<short_videos>
+    user : String
 }
 
 export const actionType = {
@@ -14,7 +15,8 @@ export const actionType = {
     SET_AVAILABLE_ON : 'SET_AVAILABLE_ON',
     SET_MOVIES_INFO : 'SET_MOVIES_INFO',
     SET_MOVIES_IMAGES : 'SET_MOVIES_IMAGES',
-    SET_SHORT_MOVIES : 'SET_SHORT_VIDEOS'
+    SET_SHORT_MOVIES : 'SET_SHORT_VIDEOS',
+    SET_USER : 'SET_USER'
 }
 
 export const reducer = (state: InitialState, action: ActionType) => {
@@ -43,6 +45,11 @@ export const reducer = (state: InitialState, action: ActionType) => {
             return {
                 ...state,
                 get_short_videos : action.get_short_videos
+            }
+        case actionType.SET_USER:
+            return {
+                ...state,
+                user : action.user
             }
         default : 
             return state
