@@ -12,7 +12,6 @@ const createToken = (id: any) => {
 
 export const requireAuth = async (req: Request, res: Response, next: NextFunction) => {
     const token = req.cookies
-    console.log(token,123)
     if(token) {
         jwt.verify(token, 'secret', (err: any, decodedToken: any) => {
             if(err){
@@ -60,7 +59,6 @@ export const postLoginUser = async (req: Request, res: Response) => {
         if(auth) {
         const token = createToken(user._id)
         res.cookie('jwt', token, {httpOnly: true, maxAge: maxAge * 1000})
-        console.log(req.cookies, 123)
         res.json({
             statusCode: 200,
             email: userDetails.email,
@@ -84,7 +82,6 @@ export const postLoginUser = async (req: Request, res: Response) => {
 
 export const getLogout = async (req: Request, res: Response) => {
     res.cookie('jwt', '', {maxAge: 1})
-    console.log(req.cookies, 123)
     res.json({
         response: res.statusCode,
         statusMessage: "User logged out"
