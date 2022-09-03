@@ -30,7 +30,7 @@ export const loginUser = async (email: String, password: String) => {
 
 export const logoutUser = async () => {
     try {
-        await axios.post(`${process.env.REACT_APP_HEROKU_SERVER || 'http://localhost:8200/'}logoutUser`)
+        await axios.get(`${process.env.REACT_APP_HEROKU_SERVER || 'http://localhost:8200/'}logoutUser`)
         return
     } catch (error) {
         console.log(error)
