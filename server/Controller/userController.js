@@ -40,7 +40,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.getLogout = exports.postLoginUser = exports.postRegisterUser = exports.requireAuth = void 0;
-var bcrypt_1 = __importDefault(require("bcrypt"));
+var bcryptjs_1 = __importDefault(require("bcryptjs"));
 var userModel_1 = require("../Models/userModel");
 var jsonwebtoken_1 = __importDefault(require("jsonwebtoken"));
 var maxAge = 3 * 24 * 60 * 60;
@@ -76,11 +76,11 @@ var postRegisterUser = function (req, res) { return __awaiter(void 0, void 0, vo
         switch (_b.label) {
             case 0:
                 userDetails = req.body;
-                return [4 /*yield*/, bcrypt_1.default.genSalt()];
+                return [4 /*yield*/, bcryptjs_1.default.genSalt()];
             case 1:
                 salt = _b.sent();
                 _a = userDetails;
-                return [4 /*yield*/, bcrypt_1.default.hash(userDetails.password, salt)];
+                return [4 /*yield*/, bcryptjs_1.default.hash(userDetails.password, salt)];
             case 2:
                 _a.password = _b.sent();
                 _b.label = 3;
@@ -122,7 +122,7 @@ var postLoginUser = function (req, res) { return __awaiter(void 0, void 0, void 
             case 1:
                 user = _a.sent();
                 if (!user) return [3 /*break*/, 3];
-                return [4 /*yield*/, bcrypt_1.default.compare(userDetails.password, String(user.password))];
+                return [4 /*yield*/, bcryptjs_1.default.compare(userDetails.password, String(user.password))];
             case 2:
                 auth = _a.sent();
                 if (auth) {

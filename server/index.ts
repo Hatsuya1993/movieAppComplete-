@@ -31,6 +31,10 @@ try {
     console.log(`[DB]: MongoDB success connect`)
 }
 
+app.get('/', (req, res) => {
+    res.send('Hello')
+})
+
 const port = process.env.PORT || 8200
 
 app.listen(port, () => {

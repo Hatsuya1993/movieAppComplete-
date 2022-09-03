@@ -1,14 +1,15 @@
 import axios from "axios";
 
-const getUserLocation = async () => {
-    const data = await axios.get('http://ip-api.com/json/')
-    return data.data.country
-}
-
 export const getShows = async (show: string) => {
-    const country = await getUserLocation()
     try {
-        const data : any = await axios.get(`${process.env.REACT_APP_CORS}https://serpapi.com/search.json?q=${show}+watch+online&location=${country}&hl=en&gl=us&api_key=${process.env.REACT_APP_GOOGLE_API}`)
+        const dataIP : any = await axios.get(`${process.env.REACT_APP_CORS}https://api.ipdata.co/?api-key=${process.env.REACT_APP_IP_KEY}`)
+        const data : any = await axios.get(`${process.env.REACT_APP_CORS}https://serpapi.com/search.json?q=${show}+watch+online&location=${dataIP.data.country_name}&hl=en&gl=us&api_key=${process.env.REACT_APP_GOOGLE_API}`, {
+            headers: {
+                "accept": "application/json",
+                "x-requested-with": "xmlhttprequest",
+                "Access-Control-Allow-Origin": "*",
+            }
+        })
         return data.data
     } catch (error) {
         console.log(error)
@@ -35,7 +36,13 @@ export const getMoviesVideo = async (id: string) => {
 
 export const getShortVideos = async (title : string) => {
     try {
-        const data : any = await axios.get(`${process.env.REACT_APP_CORS}https://serpapi.com/search.json?q=${title}&device=mobile&hl=en&gl=us&api_key=${process.env.REACT_APP_GOOGLE_API}`)
+        const data : any = await axios.get(`${process.env.REACT_APP_CORS}https://serpapi.com/search.json?q=${title}&device=mobile&hl=en&gl=us&api_key=${process.env.REACT_APP_GOOGLE_API}`, {
+            headers: {
+                "accept": "application/json",
+                "x-requested-with": "xmlhttprequest",
+                "Access-Control-Allow-Origin": "*",
+            }
+        })
         return data.data
     } catch (error) {
         console.log(error)

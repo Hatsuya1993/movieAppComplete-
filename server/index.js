@@ -31,6 +31,9 @@ catch (error) {
 finally {
     console.log("[DB]: MongoDB success connect");
 }
+exports.app.get('/', function (req, res) {
+    res.send('Hello');
+});
 var port = process.env.PORT || 8200;
 exports.app.listen(port, function () {
     console.log("[Server]: Server is running");
