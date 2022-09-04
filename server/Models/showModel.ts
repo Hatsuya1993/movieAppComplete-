@@ -1,5 +1,5 @@
 import {Schema, model} from 'mongoose'
-import {ResultInterface} from '../Interface/showInterface'
+import {ResultInterface} from '../Interface/showsInterface'
 
 const ShowSchema = new Schema<ResultInterface>({
     id: {
