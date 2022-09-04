@@ -1,4 +1,5 @@
 import axios from "axios";
+import { results } from "../Redux/initialState";
 
 export const getShows = async (show: string) => {
     try {
@@ -44,6 +45,22 @@ export const getShortVideos = async (title : string) => {
             }
         })
         return data.data
+    } catch (error) {
+        console.log(error)
+    }
+}
+
+export const addShows = async (dataShows: results) => {
+    try {
+        await axios.post(`${process.env.REACT_APP_HEROKU_SERVER || 'http://localhost:8200/'}addShows`, {
+            id: dataShows.id,
+            original_title: dataShows.original_title,
+            original_language: dataShows.original_language,
+            overview: dataShows.overview,
+            poster_path: dataShows.poster_path,
+            release_date: dataShows.release_date,
+            backdrop_path: dataShows.backdrop_path
+        })
     } catch (error) {
         console.log(error)
     }

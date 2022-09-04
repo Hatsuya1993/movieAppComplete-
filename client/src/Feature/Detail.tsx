@@ -5,11 +5,14 @@ import { useLocation } from 'react-router-dom'
 import { available_on_type, backdrop } from '../Redux/initialState'
 import { actionType } from '../Redux/reducer'
 import { useStateValue } from '../Redux/StateProvider'
-import { getMoviesVideo, getShows } from '../Utils/fetchShows'
+import { addShows, getMoviesVideo, getShows } from '../Utils/fetchShows'
 import NoData from '../Img/no-data-icon.jpg'
+import ButtonComponent from '../Components/ButtonComponent'
 
 const Detail : React.FC = () => {
     const location = useLocation()
+    const [message, setMessage] = React.useState(false)
+    const [messageInfo, setMessageInfo] = React.useState('')
     const data : any = location.state
     const [{loading, get_movies_images, available_on}, dispatch] = useStateValue()
     React.useEffect(() => {
@@ -46,11 +49,49 @@ const Detail : React.FC = () => {
             loading: false
         })
     }
+
+    const handleAdd = async () => {
+        dispatch({
+            type: actionType.SET_LOADING,
+            loading: true
+        })
+        try {
+            await addShows(data)
+            setMessage(true)
+            setMessageInfo('Show added')
+            setTimeout(() => {
+                setMessage(false)
+                setMessageInfo('')
+            }, 5000);
+        } catch (error) {
+            console.log(error)
+            setMessage(true)
+            setMessageInfo('Try again')
+            setTimeout(() => {
+                setMessage(false)
+                setMessageInfo('')
+            }, 5000);
+        }
+        dispatch({
+            type: actionType.SET_LOADING,
+            loading: false
+        })
+    }
     
     return (
         <div className='w-full h-full p-7 flex flex-col gap-5'>
             <div className='bg-slate-100 w-80 mx-auto p-3 rounded-lg'>
             <div className='w-full flex flex-col gap-4'>
+                {loading ? (
+                    <div className='w-full text-center'>
+                    <CircularProgress size='50px' isIndeterminate color='orange.400' /></div>
+                ) : (
+                    message && messageInfo && (
+                        <div className='text-center'>
+                            {messageInfo}
+                        </div>
+                    )
+                )}
                 <div className='w-full'>
                     <img className='rounded-lg' src={`https://image.tmdb.org/t/p/original${data.backdrop_path}`} alt="" />
                 </div>
@@ -58,6 +99,7 @@ const Detail : React.FC = () => {
                 <p>Title: {data.original_title}</p>
                 <p>Overview: {data.overview}</p>
                 <p>Release Date: {data.release_date}</p>
+                <ButtonComponent onClick={handleAdd}>Add</ButtonComponent>
                 </div>
             </div>
             </div>
