@@ -52,11 +52,10 @@ var createToken = function (id) {
 var requireAuth = function (req, res, next) { return __awaiter(void 0, void 0, void 0, function () {
     var token;
     return __generator(this, function (_a) {
-        token = req.cookies;
+        token = req.cookies.jwt;
         if (token) {
             jsonwebtoken_1.default.verify(token, 'secret', function (err, decodedToken) {
                 if (err) {
-                    console.log(err.message);
                     res.json({
                         statusMessage: "User not authenticated"
                     });

@@ -38,5 +38,5 @@ app.get('/', (req, res) => {
 const port = process.env.PORT || 8200
 
 app.listen(port, () => {
-    console.log(`[Server]: Server is running`)
+    console.log(`[Server]: Server is running ${port}`)
 })

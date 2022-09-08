@@ -8,7 +8,7 @@ type ButtonComponentProp = {
 
 const ButtonComponent : React.FC<ButtonComponentProp> = ({children, onClick}) => {
     return (
-        <motion.button whileTap={{scale:0.9}} className='bg-white p-1 rounded-lg shadow-md' onClick={onClick}>
+        <motion.button type='button' whileTap={{scale:0.9}} className='bg-white p-1 rounded-lg shadow-md' onClick={onClick}>
             {children}
         </motion.button>
     )

@@ -36,5 +36,5 @@ exports.app.get('/', function (req, res) {
 });
 var port = process.env.PORT || 8200;
 exports.app.listen(port, function () {
-    console.log("[Server]: Server is running");
+    console.log("[Server]: Server is running " + port);
 });

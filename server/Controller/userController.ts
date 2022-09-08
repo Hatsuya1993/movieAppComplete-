@@ -11,11 +11,10 @@ const createToken = (id: any) => {
 }
 
 export const requireAuth = async (req: Request, res: Response, next: NextFunction) => {
-    const token = req.cookies
+    const token = req.cookies.jwt
     if(token) {
         jwt.verify(token, 'secret', (err: any, decodedToken: any) => {
             if(err){
-                console.log(err.message)
                 res.json({
                     statusMessage: "User not authenticated"
                 })
