@@ -24,6 +24,11 @@ export const requireAuth = async (req: Request, res: Response, next: NextFunctio
             }
         })
     }
+    else{
+        res.json({
+            statusMessage: "User not authenticated"
+        })
+    }
 }
 
 export const postRegisterUser = async (req: Request, res: Response) => {

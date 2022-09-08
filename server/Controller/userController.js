@@ -65,6 +65,11 @@ var requireAuth = function (req, res, next) { return __awaiter(void 0, void 0, v
                 }
             });
         }
+        else {
+            res.json({
+                statusMessage: "User not authenticated"
+            });
+        }
         return [2 /*return*/];
     });
 }); };

@@ -4,7 +4,7 @@ import { postRegisterUser, postLoginUser, getLogout, requireAuth } from '../Cont
 
 export const userRoutes = express.Router()
 
-userRoutes.route("/addShows").post(requireAuth).post(postAddShows)
+userRoutes.route("/addShows").post(requireAuth, postAddShows)
 
 userRoutes.route("/registerUser").post(postRegisterUser)
 
