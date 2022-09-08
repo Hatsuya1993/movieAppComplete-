@@ -60,8 +60,10 @@ export const addShows = async (dataShows: results) => {
             poster_path: dataShows.poster_path,
             release_date: dataShows.release_date,
             backdrop_path: dataShows.backdrop_path
+        }, {
+            withCredentials: true
         })
     } catch (error) {
-        console.log(error)
+        throw new Error(`${error}`)
     }
 }

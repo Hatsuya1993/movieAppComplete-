@@ -64,9 +64,8 @@ const Detail : React.FC = () => {
                 setMessageInfo('')
             }, 5000);
         } catch (error) {
-            console.log(error)
             setMessage(true)
-            setMessageInfo('Try again')
+            setMessageInfo('Data already exist')
             setTimeout(() => {
                 setMessage(false)
                 setMessageInfo('')
