@@ -5,7 +5,7 @@ import jwt from "jsonwebtoken"
 
 const maxAge = 3 * 24 * 60 * 60
 const createToken = (id: any) => {
-    return jwt.sign({id}, 'secret', {
+    return jwt.sign({id}, `${process.env.SECRET_KEY}`, {
         expiresIn: maxAge
     })
 }
@@ -13,7 +13,7 @@ const createToken = (id: any) => {
 export const requireAuth = async (req: Request, res: Response, next: NextFunction) => {
     const token = req.cookies.jwt
     if(token) {
-        jwt.verify(token, 'secret', (err: any, decodedToken: any) => {
+        jwt.verify(token, `${process.env.SECRET_KEY}`, (err: any, decodedToken: any) => {
             if(err){
                 res.json({
                     statusMessage: "User not authenticated"
