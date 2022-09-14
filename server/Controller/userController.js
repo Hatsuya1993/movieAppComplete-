@@ -97,7 +97,7 @@ var postRegisterUser = function (req, res) { return __awaiter(void 0, void 0, vo
             case 4:
                 user = _b.sent();
                 token = createToken(user._id);
-                res.cookie('jwt', token, { httpOnly: true, maxAge: maxAge * 1000, sameSite: "none" });
+                res.cookie('jwt', token, { httpOnly: true, maxAge: maxAge * 1000, sameSite: "none", secure: true });
                 res.json({
                     statusCode: 200,
                     email: userDetails.email,
@@ -131,7 +131,7 @@ var postLoginUser = function (req, res) { return __awaiter(void 0, void 0, void 
                 auth = _a.sent();
                 if (auth) {
                     token = createToken(user._id);
-                    res.cookie('jwt', token, { httpOnly: true, maxAge: maxAge * 1000, sameSite: "none" });
+                    res.cookie('jwt', token, { httpOnly: true, maxAge: maxAge * 1000, sameSite: "none", secure: true });
                     res.json({
                         statusCode: 200,
                         email: userDetails.email,
