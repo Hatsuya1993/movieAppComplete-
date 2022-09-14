@@ -1,4 +1,4 @@
-import { available_on_type, get_movies_images, InitialState, results, short_videos } from "./initialState"
+import { available_on_type, get_movies_images, InitialState, results, short_videos, user_videos } from "./initialState"
 
 interface ActionType {
     type : string
@@ -7,7 +7,8 @@ interface ActionType {
     get_movies_info : Array<results>
     get_movies_images : get_movies_images
     get_short_videos : Array<short_videos>
-    user : String
+    user : String,
+    get_user_shows: Array<user_videos>
 }
 
 export const actionType = {
@@ -16,7 +17,8 @@ export const actionType = {
     SET_MOVIES_INFO : 'SET_MOVIES_INFO',
     SET_MOVIES_IMAGES : 'SET_MOVIES_IMAGES',
     SET_SHORT_MOVIES : 'SET_SHORT_VIDEOS',
-    SET_USER : 'SET_USER'
+    SET_USER : 'SET_USER',
+    SET_USER_SHOWS : 'SET_USER_SHOWS'
 }
 
 export const reducer = (state: InitialState, action: ActionType) => {
@@ -50,6 +52,11 @@ export const reducer = (state: InitialState, action: ActionType) => {
             return {
                 ...state,
                 user : action.user
+            }
+        case actionType.SET_USER_SHOWS:
+            return {
+                ...state,
+                get_user_shows : action.get_user_shows
             }
         default : 
             return state

@@ -55,7 +55,6 @@ export const addShows = async (dataShows: results) => {
         await axios.post(`${process.env.REACT_APP_HEROKU_SERVER || 'http://localhost:8200/'}addShows`, {
             id: dataShows.id,
             original_title: dataShows.original_title,
-            original_language: dataShows.original_language,
             overview: dataShows.overview,
             poster_path: dataShows.poster_path,
             release_date: dataShows.release_date,
@@ -64,6 +63,18 @@ export const addShows = async (dataShows: results) => {
             withCredentials: true
         })
     } catch (error) {
+        throw new Error(`${error}`)
+    }
+}
+
+export const allShows = async () => {
+    try {
+        const data = await axios.get(`${process.env.REACT_APP_HEROKU_SERVER || 'http://localhost:8200/'}allShows`, {
+            withCredentials: true
+        })
+        return data.data
+    }
+    catch(error) {
         throw new Error(`${error}`)
     }
 }

@@ -11,32 +11,22 @@ var ShowSchema = new mongoose_1.Schema({
     original_title: {
         type: String,
         required: true,
-        unique: true,
-    },
-    original_language: {
-        type: String,
-        required: true,
-        unique: true,
     },
     overview: {
         type: String,
         required: true,
-        unique: true,
     },
     poster_path: {
         type: String,
         required: true,
-        unique: true,
     },
     release_date: {
         type: String,
         required: true,
-        unique: true,
     },
     backdrop_path: {
         type: String,
         required: true,
-        unique: true,
     }
 });
 exports.Show = mongoose_1.model('Show', ShowSchema);

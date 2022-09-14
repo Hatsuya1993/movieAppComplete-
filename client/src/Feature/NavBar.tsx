@@ -26,7 +26,7 @@ return (
             </div>
             <div className='w-full'>
                 <ul className='flex flex-col items-center gap-3'>
-                    {user ? <ButtonComponent onClick={() => {}}>My Shows</ButtonComponent>: null}
+                    {user ? <Link to={`/myShows`}><ButtonComponent onClick={() => {}}>My Shows</ButtonComponent></Link>: null}
                     {user ? <ButtonComponent onClick={handleLogout}>Logout</ButtonComponent> : null}
                 </ul>
             </div>

@@ -38,7 +38,6 @@ const Login : React.FC = () => {
                 })
                 navigate('/')
             } catch (error) {
-                console.log(error)
                 setDisplayMessage(true)
                 setMessage('Login error')
                 setTimeout(() => {

@@ -36,7 +36,7 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
     }
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.postAddShows = void 0;
+exports.getAllShows = exports.postAddShows = void 0;
 var showModel_1 = require("../Models/showModel");
 var postAddShows = function (req, res) { return __awaiter(void 0, void 0, void 0, function () {
     var data, newShow, error_1;
@@ -67,3 +67,22 @@ var postAddShows = function (req, res) { return __awaiter(void 0, void 0, void 0
     });
 }); };
 exports.postAddShows = postAddShows;
+var getAllShows = function (req, res) { return __awaiter(void 0, void 0, void 0, function () {
+    return __generator(this, function (_a) {
+        showModel_1.Show.find({}, function (err, result) {
+            if (err) {
+                res.json({
+                    "Response": res.statusCode,
+                    "Error Message": err
+                });
+            }
+            else {
+                res.json({
+                    data: result
+                });
+            }
+        });
+        return [2 /*return*/];
+    });
+}); };
+exports.getAllShows = getAllShows;

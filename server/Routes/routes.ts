@@ -1,8 +1,10 @@
 import express from 'express'
-import { postAddShows } from '../Controller/showsController'
+import { postAddShows, getAllShows } from '../Controller/showsController'
 import { postRegisterUser, postLoginUser, getLogout, requireAuth } from '../Controller/userController'
 
 export const userRoutes = express.Router()
+
+userRoutes.route("/allShows").get(requireAuth, getAllShows)
 
 userRoutes.route("/addShows").post(requireAuth, postAddShows)
 

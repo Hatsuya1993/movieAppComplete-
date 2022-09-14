@@ -34,13 +34,24 @@ export interface short_videos {
     thumbnail: string
 }
 
+export interface user_videos {
+    id: number,
+    original_title: string,
+    original_language: string,
+    overview: string,
+    poster_path: string,
+    release_date: string,
+    backdrop_path: string
+}
+
 export interface InitialState {
     loading : boolean
     available_on : Array<available_on_type>
     get_movies_info : Array<results>
     get_movies_images : get_movies_images
     get_short_videos : Array<short_videos>
-    user : String
+    user : String,
+    get_user_shows : Array<user_videos>
 }
 
 export const initialState : InitialState = {
@@ -52,5 +63,6 @@ export const initialState : InitialState = {
         backdrops: [],
         posters: []
     },
-    get_short_videos : []
+    get_short_videos : [],
+    get_user_shows: []
 }

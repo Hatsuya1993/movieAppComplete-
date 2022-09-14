@@ -11,6 +11,7 @@ import Information from './Feature/Information';
 import Detail from './Feature/Detail';
 import ListShowVideos from './Feature/ListShowVideos';
 import { useStateValue } from './Redux/StateProvider';
+import MyShows from './Feature/MyShows';
 
 const App : React.FC =  () =>  {
   const [{user}, dispatch] = useStateValue()
@@ -26,6 +27,7 @@ const App : React.FC =  () =>  {
           <Route path='/information' element={<RequireAuthComponent><Information /></RequireAuthComponent>}></Route>
           <Route path='/detail' element={<RequireAuthComponent><Detail /></RequireAuthComponent>}></Route>
           <Route path='/short%20videos/:title' element={<RequireAuthComponent><ListShowVideos /></RequireAuthComponent>}></Route>
+          <Route path='/myShows' element={<RequireAuthComponent><MyShows /></RequireAuthComponent>}></Route>
         </Routes>
       </main>
     </div>

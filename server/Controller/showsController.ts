@@ -1,4 +1,6 @@
 import { Request, Response } from "express"
+import { Error } from "mongoose"
+import { ResultInterface } from "../Interface/showsInterface"
 import { Show } from "../Models/showModel"
 
 export const postAddShows = async (req: Request, res: Response) => {
@@ -15,4 +17,20 @@ export const postAddShows = async (req: Request, res: Response) => {
             "Error message": error
         })
     }
+}
+
+export const getAllShows = async (req: Request, res: Response) => {
+    Show.find({}, (err: Error, result: Array<ResultInterface>) => {
+        if(err) {
+            res.json({
+                "Response": res.statusCode,
+                "Error Message": err
+            })
+        }
+        else{
+            res.json({
+                data: result
+            })
+        }
+    }) 
 }
