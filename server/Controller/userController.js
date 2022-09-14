@@ -45,7 +45,7 @@ var userModel_1 = require("../Models/userModel");
 var jsonwebtoken_1 = __importDefault(require("jsonwebtoken"));
 var maxAge = 3 * 24 * 60 * 60;
 var createToken = function (id) {
-    return jsonwebtoken_1.default.sign({ id: id }, "" + process.env.SECRET_KEY, {
+    return jsonwebtoken_1.default.sign({ id: id }, process.env.SECRET_KEY, {
         expiresIn: maxAge
     });
 };
@@ -54,7 +54,7 @@ var requireAuth = function (req, res, next) { return __awaiter(void 0, void 0, v
     return __generator(this, function (_a) {
         token = req.cookies.jwt;
         if (token) {
-            jsonwebtoken_1.default.verify(token, "" + process.env.SECRET_KEY, function (err, decodedToken) {
+            jsonwebtoken_1.default.verify(token, process.env.SECRET_KEY, function (err, decodedToken) {
                 if (err) {
                     res.json({
                         statusMessage: "User not authenticated"
