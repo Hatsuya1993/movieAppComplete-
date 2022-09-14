@@ -41,7 +41,7 @@ export const postRegisterUser = async (req: Request, res: Response) => {
             password: userDetails.password
         })
         const token = createToken(user._id)
-        res.cookie('jwt', token, {httpOnly: true, maxAge: maxAge * 1000})
+        res.cookie('jwt', token, {httpOnly: true, maxAge: maxAge * 1000, sameSite: "none"})
         res.json({
             statusCode: 200,
             email: userDetails.email,
@@ -62,7 +62,7 @@ export const postLoginUser = async (req: Request, res: Response) => {
         const auth = await bcrypt.compare(userDetails.password, String(user.password))
         if(auth) {
         const token = createToken(user._id)
-        res.cookie('jwt', token, {httpOnly: true, maxAge: maxAge * 1000})
+        res.cookie('jwt', token, {httpOnly: true, maxAge: maxAge * 1000, sameSite: "none"})
         res.json({
             statusCode: 200,
             email: userDetails.email,
