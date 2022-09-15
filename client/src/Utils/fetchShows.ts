@@ -70,11 +70,21 @@ export const addShows = async (dataShows: results) => {
 export const allShows = async () => {
     try {
         const data = await axios.get(`${process.env.REACT_APP_HEROKU_SERVER || 'http://localhost:8200/'}allShows`, {
-            withCredentials: true
+            withCredentials: true,
         })
         return data.data
     }
     catch(error) {
+        throw new Error(`${error}`)
+    }
+}
+
+export const deleteShows = async (id: number) => {
+    try {
+        await axios.delete(`${process.env.REACT_APP_HEROKU_SERVER || 'http://localhost:8200/'}deleteShows/${id}`, {
+            withCredentials: true,
+        })
+    } catch (error) {
         throw new Error(`${error}`)
     }
 }

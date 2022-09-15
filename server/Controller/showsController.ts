@@ -34,3 +34,18 @@ export const getAllShows = async (req: Request, res: Response) => {
         }
     }) 
 }
+
+export const deleteShows = async (req: Request, res: Response) => {
+    const id = req.params.id
+    try {
+        await Show.findOneAndDelete({id: id})
+        res.json({
+            message: `Deleted shows ${id} successfully`
+        })
+    } catch (error) {
+        res.status(400).json({
+            "Response": res.statusCode,
+            "Error message": error
+        })
+    }
+}
