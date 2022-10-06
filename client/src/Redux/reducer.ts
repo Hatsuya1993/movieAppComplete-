@@ -9,6 +9,7 @@ interface ActionType {
     get_short_videos : Array<short_videos>
     user : String,
     get_user_shows: Array<user_videos>
+    addLoading: boolean
 }
 
 export const actionType = {
@@ -18,7 +19,8 @@ export const actionType = {
     SET_MOVIES_IMAGES : 'SET_MOVIES_IMAGES',
     SET_SHORT_MOVIES : 'SET_SHORT_VIDEOS',
     SET_USER : 'SET_USER',
-    SET_USER_SHOWS : 'SET_USER_SHOWS'
+    SET_USER_SHOWS : 'SET_USER_SHOWS',
+    SET_ADD_LOADING : 'SET_ADD_LOADING'
 }
 
 export const reducer = (state: InitialState, action: ActionType) => {
@@ -57,6 +59,11 @@ export const reducer = (state: InitialState, action: ActionType) => {
             return {
                 ...state,
                 get_user_shows : action.get_user_shows
+            }
+        case actionType.SET_ADD_LOADING:
+            return {
+                ...state,
+                addLoading : action.addLoading
             }
         default : 
             return state

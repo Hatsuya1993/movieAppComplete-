@@ -14,7 +14,7 @@ const Detail : React.FC = () => {
     const [message, setMessage] = React.useState(false)
     const [messageInfo, setMessageInfo] = React.useState('')
     const data : any = location.state
-    const [{loading, get_movies_images, available_on}, dispatch] = useStateValue()
+    const [{loading, get_movies_images, available_on, addLoading}, dispatch] = useStateValue()
     React.useEffect(() => {
         const fetchData = async () => {
             await getMovies()
@@ -52,8 +52,8 @@ const Detail : React.FC = () => {
 
     const handleAdd = async () => {
         dispatch({
-            type: actionType.SET_LOADING,
-            loading: true
+            type: actionType.SET_ADD_LOADING,
+            addLoading: true
         })
         try {
             await addShows(data)
@@ -72,8 +72,8 @@ const Detail : React.FC = () => {
             }, 5000);
         }
         dispatch({
-            type: actionType.SET_LOADING,
-            loading: false
+            type: actionType.SET_ADD_LOADING,
+            addLoading: false
         })
     }
     

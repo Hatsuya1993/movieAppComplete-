@@ -52,11 +52,13 @@ export interface InitialState {
     get_short_videos : Array<short_videos>
     user : String,
     get_user_shows : Array<user_videos>
+    addLoading: boolean
 }
 
 export const initialState : InitialState = {
     user : '',
     loading : false,
+    addLoading : false,
     available_on : [],
     get_movies_info : [],
     get_movies_images : {
