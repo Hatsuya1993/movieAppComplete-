@@ -15,6 +15,10 @@ const Information : React.FC = () => {
   const [{loading, get_movies_info}, dispatch] = useStateValue()
   useEffect(() => {
     dispatch({
+      type: actionType.SET_LOADING,
+      loading: false
+  })
+    dispatch({
       type: actionType.SET_MOVIES_INFO,
       get_movies_info: []
   })
