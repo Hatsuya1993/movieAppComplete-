@@ -37,7 +37,7 @@ const MyShows : React.FC = () => {
         }
     }
     return (
-        <div className='w-full py-10 flex flex-col gap-5'>
+        <div className='w-full py-10 flex flex-col gap-5 mt-10'>
             {get_user_shows && get_user_shows.length > 0 ? get_user_shows.map((each: user_videos) => (
             <motion.div whileTap={{scale: 0.9}} className='bg-slate-100 w-80 mx-auto p-3 rounded-lg shadow-lg flex items-center justify-between'>
                 <div className='flex flex-col gap-3'>

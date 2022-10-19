@@ -1,15 +1,17 @@
 import { CircularProgress } from '@chakra-ui/react'
 import { motion } from 'framer-motion'
 import React from 'react'
-import { useLocation } from 'react-router-dom'
+import { useLocation, useNavigate } from 'react-router-dom'
 import { available_on_type, backdrop } from '../Redux/initialState'
 import { actionType } from '../Redux/reducer'
 import { useStateValue } from '../Redux/StateProvider'
 import { addShows, getMoviesVideo, getShows } from '../Utils/fetchShows'
 import NoData from '../Img/no-data-icon.jpg'
 import ButtonComponent from '../Components/ButtonComponent'
+import { AiOutlineArrowLeft } from 'react-icons/ai'
 
 const Detail : React.FC = () => {
+    const navigate = useNavigate()
     const location = useLocation()
     const [message, setMessage] = React.useState(false)
     const [messageInfo, setMessageInfo] = React.useState('')
@@ -79,7 +81,10 @@ const Detail : React.FC = () => {
     
     return (
         <div className='w-full h-full p-7 flex flex-col gap-5'>
-            <div className='bg-slate-100 w-80 mx-auto p-3 rounded-lg'>
+            <div>
+                    <ButtonComponent onClick={() => navigate(-1)}><AiOutlineArrowLeft/></ButtonComponent>
+            </div>
+            <div className='bg-slate-100 w-80 md:w-96 mx-auto p-3 rounded-lg'>
             <div className='w-full flex flex-col gap-4'>
                 {loading ? (
                     <div className='w-full text-center'>
@@ -102,7 +107,7 @@ const Detail : React.FC = () => {
                 </div>
             </div>
             </div>
-            <div className='w-80 mx-auto p-3 flex items-center scroll-smooth overflow-x-scroll gap-3 scrollbar-thumb-gray-100 scrollbar-track-transparent scrollbar-thin'>
+            <div className='w-80 md:w-96 mx-auto p-3 flex items-center scroll-smooth overflow-x-scroll gap-3 scrollbar-thumb-gray-100 scrollbar-track-transparent scrollbar-thin'>
                 {loading ? <div className='w-full text-center'>
                     <CircularProgress size='50px' isIndeterminate color='orange.400' /></div>
                 : get_movies_images && get_movies_images.backdrops && get_movies_images.backdrops.length > 0 &&  get_movies_images.backdrops.map((each : backdrop) => (

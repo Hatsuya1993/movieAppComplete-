@@ -42,16 +42,16 @@ const ListShowVideos : React.FC = () => {
     }
     return (
         <div className='w-full'> 
-            <div className='w-96 p-5 mx-auto'>
-                <div className='w-72 mx-auto flex flex-col gap-5'>
+            <div className='w-[100vw] p-5 mx-auto md:w-[90vw]'>
                 <div>
                     <ButtonComponent onClick={() => navigate(-1)}><AiOutlineArrowLeft/></ButtonComponent>
                 </div>
+                <div className='w-72 mx-auto flex flex-col gap-5 md:w-[70vw]'>
                 <div>
                     {loading ? (
                         <div className='text-center'><CircularProgress isIndeterminate color='orange.300' /></div>
                     ) : get_short_videos && get_short_videos.length > 0 ? (
-                        <div className='flex flex-col gap-3'>
+                        <div className='flex flex-col gap-3 md:flex-row md:justify-between'>
                             {get_short_videos?.map((each: short_videos) => (
                                 <motion.div key={each.link} whileTap={{scale: 0.9}} className='bg-slate-100 py-3 rounded-lg'>
                                     <a href={`${each.link}`} target="_blank" rel="noopener noreferrer">

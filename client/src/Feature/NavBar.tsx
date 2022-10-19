@@ -25,7 +25,7 @@ return (
                 <Link to={'/'}><img className='w-20 mx-auto' src={Logo} alt="Logo" /></Link>
             </div>
             <div className='w-full'>
-                <ul className='flex flex-col items-center gap-3'>
+                <ul className='flex flex-col items-center gap-3 md:flex-row md:justify-center'>
                     {user ? <Link to={`/myShows`}><ButtonComponent onClick={() => {}}>My Shows</ButtonComponent></Link>: null}
                     {user ? <ButtonComponent onClick={handleLogout}>Logout</ButtonComponent> : null}
                 </ul>

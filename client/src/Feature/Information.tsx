@@ -41,7 +41,7 @@ const Information : React.FC = () => {
   return (
     <div className='w-full h-full py-4'>
     <div className='w-80 md:w-[90%] h-full mx-auto'>
-    <div className='w-full h-full bg-slate-100 p-4 rounded-lg flex flex-col gap-4'>
+    <div className='w-full h-full mt-10 bg-slate-100 p-4 rounded-lg flex flex-col gap-4'>
         <InputComponent name='search' onChange={(e) => setSearch(e.target.value)} placeholder='Enter movie / show name' required={true} type='text' value={search}/>
         <div>
         <ButtonComponent onClick={handleSearch}>Search</ButtonComponent>

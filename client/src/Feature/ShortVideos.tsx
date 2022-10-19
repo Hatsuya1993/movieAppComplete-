@@ -15,6 +15,10 @@ const ShortVideos : React.FC = () => {
   const [{loading, get_movies_info}, dispatch] = useStateValue()
   React.useEffect(() => {
     dispatch({
+      type: actionType.SET_LOADING,
+      loading: false
+  })
+    dispatch({
         type: actionType.SET_MOVIES_INFO,
         get_movies_info: []
     })
@@ -37,7 +41,7 @@ const ShortVideos : React.FC = () => {
   return (
     <div className='w-full p-5 h-full'>
       <div className='w-80 md:w-[90%] h-full mx-auto'>
-        <div className='w-full h-full bg-slate-100 p-4 rounded-lg flex flex-col gap-4'>
+        <div className='w-full h-full mt-10 bg-slate-100 p-4 rounded-lg flex flex-col gap-4'>
             <InputComponent name='search' onChange={(e) => setSearch(e.target.value)} placeholder='Search movies or shows' required={true} type='text' value={search}/>
             <div>
             <ButtonComponent onClick={handleSearch}>Search</ButtonComponent>
