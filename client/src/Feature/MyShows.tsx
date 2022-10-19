@@ -39,7 +39,7 @@ const MyShows : React.FC = () => {
     return (
         <div className='w-full py-10 flex flex-col gap-5 mt-10'>
             {get_user_shows && get_user_shows.length > 0 ? get_user_shows.map((each: user_videos) => (
-            <motion.div whileTap={{scale: 0.9}} className='bg-slate-100 w-80 mx-auto p-3 rounded-lg shadow-lg flex items-center justify-between'>
+            <motion.div whileTap={{scale: 0.9}} className='bg-slate-100 w-80 md:w-96 mx-auto p-3 rounded-lg shadow-lg flex items-center justify-between'>
                 <div className='flex flex-col gap-3'>
                     <p>{each.original_title}</p>
                     <div className='flex gap-3'>
@@ -48,7 +48,7 @@ const MyShows : React.FC = () => {
                     </div>
                 </div>
                 <div>
-                    <img className='w-20' src={`https://image.tmdb.org/t/p/original/${each.backdrop_path || each.poster_path}`} alt=""/>
+                    <img className='w-20 rounded-lg' src={`https://image.tmdb.org/t/p/original/${each.backdrop_path || each.poster_path}`} alt=""/>
                 </div>
             </motion.div>
             )) : (
