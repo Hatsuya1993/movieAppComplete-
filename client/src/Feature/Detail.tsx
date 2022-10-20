@@ -80,8 +80,8 @@ const Detail : React.FC = () => {
     }
     
     return (
-        <div className='w-full h-full p-7 flex flex-col gap-5'>
-            <div>
+        <div className='w-full h-full p-7 mt-10 flex flex-col gap-5'>
+            <div className='py-5'>
                     <ButtonComponent onClick={() => navigate(-1)}><AiOutlineArrowLeft/></ButtonComponent>
             </div>
             <div className='bg-slate-100 w-80 md:w-96 mx-auto p-3 rounded-lg'>
